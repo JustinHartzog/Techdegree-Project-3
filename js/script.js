@@ -7,9 +7,12 @@ $("#title").change(()=>{
     $('#other-title').hide();
   }
 })
-
+$("#color").hide();
+$("#color").prev().hide();
 $("#design").change(()=>{
   if($("#design").val()==="js puns"){
+    $("#color").show();
+    $("#color").prev().show();
     $('#color').val("cornflowerblue")
     $("option[value='tomato']").hide();
     $("option[value='steelblue']").hide();
@@ -18,6 +21,8 @@ $("#design").change(()=>{
     $("option[value='darkslategrey']").show();
     $("option[value='gold']").show();
   } else if($("#design").val()==="heart js"){
+    $("#color").show();
+    $("#color").prev().show();
     $('#color').val("tomato")
     $("option[value='cornflowerblue']").hide();
     $("option[value='darkslategrey']").hide();
@@ -25,6 +30,9 @@ $("#design").change(()=>{
     $("option[value='tomato']").show();
     $("option[value='steelblue']").show();
     $("option[value='dimgrey']").show();
+  } else {
+    $("#color").hide();
+    $("#color").prev().hide();
   }
 })
 
@@ -99,6 +107,10 @@ $('input[name=npm]').click( function(){
   }
 });
 
+$("#payment").change(()=>{
+  $('#payment option[value="select_method"]').hide();
+});
+
 $("p").eq(0).hide();
 $("p").eq(1).hide();
 
@@ -137,8 +149,13 @@ $('#payment').change(function(){
     }
 });
 
+function isEmail($email) {
+  var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+  return emailReg.test( $email );
+}
+
 $('button').on('click', function(){
-if ($('#cc-num').val() === '' || $('#cc-num').val().length > 16 || $('#cc-num').val().length < 13) {
+if ($('#cc-num').val() === '' || $('#cc-num').val().length > 16 || $('#cc-num').val().length < 13 || isNaN($('#cc-num').val())) {
   $('#cc-num').css('border-color', '#ff0000');
   $('#cc-num').prev().css('color', '#ff0000');
   event.preventDefault();
@@ -146,8 +163,8 @@ if ($('#cc-num').val() === '' || $('#cc-num').val().length > 16 || $('#cc-num').
   $('#cc-num').css('border', 'none');
   $('#cc-num').prev().css('color', 'black');
 }
-
- if ($('#zip').val() === '' || $('#zip').val().length < 5 || $('#zip').val().length > 5) {
+//$('#zip').val() === '' || $('#zip').val().length < 5 || $('#zip').val().length > 5
+ if ($('#zip').val() === '' || $('#zip').val().length < 5 || $('#zip').val().length > 5 || isNaN($('#zip').val())) {
   $('#zip').css('border-color', '#ff0000');
   $('#zip').prev().css('color', '#ff0000');
   event.preventDefault();
@@ -156,7 +173,7 @@ if ($('#cc-num').val() === '' || $('#cc-num').val().length > 16 || $('#cc-num').
   $('#zip').prev().css('color', 'black');
 }
 
-if ($('#cvv').val() === '' || $('#cvv').val().length < 3 || $('#cvv').val().length > 3) {
+if ($('#cvv').val() === '' || $('#cvv').val().length < 3 || $('#cvv').val().length > 3 || isNaN($('#cvv').val())) {
   $('#cvv').css('border-color', '#ff0000');
   $('#cvv').prev().css('color', '#ff0000');
   event.preventDefault();
@@ -174,7 +191,7 @@ if ($('#name').val() === '') {
   $('#name').prev().css('color', 'black');
 }
 
-if($('#mail').val() === '') {
+if($('#mail').val() === '' || !isEmail($("#mail").val())) {
   $('#mail').css('border-color', '#ff0000');
   $('#mail').prev().css('color', '#ff0000');
   event.preventDefault();
