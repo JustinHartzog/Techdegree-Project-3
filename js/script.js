@@ -155,33 +155,34 @@ function isEmail($email) {
 }
 
 $('button').on('click', function(){
-if ($('#cc-num').val() === '' || $('#cc-num').val().length > 16 || $('#cc-num').val().length < 13 || isNaN($('#cc-num').val())) {
-  $('#cc-num').css('border-color', '#ff0000');
-  $('#cc-num').prev().css('color', '#ff0000');
-  event.preventDefault();
-} else {
-  $('#cc-num').css('border', 'none');
-  $('#cc-num').prev().css('color', 'black');
-}
-//$('#zip').val() === '' || $('#zip').val().length < 5 || $('#zip').val().length > 5
- if ($('#zip').val() === '' || $('#zip').val().length < 5 || $('#zip').val().length > 5 || isNaN($('#zip').val())) {
-  $('#zip').css('border-color', '#ff0000');
-  $('#zip').prev().css('color', '#ff0000');
-  event.preventDefault();
-} else {
-  $('#zip').css('border', 'none');
-  $('#zip').prev().css('color', 'black');
-}
+if ($('#payment option:selected').val() === 'credit card') {
+  if ($('#cc-num').val() === '' || $('#cc-num').val().length > 16 || $('#cc-num').val().length < 13 || isNaN($('#cc-num').val())) {
+    $('#cc-num').css('border-color', '#ff0000');
+    $('#cc-num').prev().css('color', '#ff0000');
+    event.preventDefault();
+  } else {
+    $('#cc-num').css('border', 'none');
+    $('#cc-num').prev().css('color', 'black');
+  }
+  //$('#zip').val() === '' || $('#zip').val().length < 5 || $('#zip').val().length > 5
+   if ($('#zip').val() === '' || $('#zip').val().length < 5 || $('#zip').val().length > 5 || isNaN($('#zip').val())) {
+    $('#zip').css('border-color', '#ff0000');
+    $('#zip').prev().css('color', '#ff0000');
+    event.preventDefault();
+  } else {
+    $('#zip').css('border', 'none');
+    $('#zip').prev().css('color', 'black');
+  }
 
-if ($('#cvv').val() === '' || $('#cvv').val().length < 3 || $('#cvv').val().length > 3 || isNaN($('#cvv').val())) {
-  $('#cvv').css('border-color', '#ff0000');
-  $('#cvv').prev().css('color', '#ff0000');
-  event.preventDefault();
-} else {
-  $('#cvv').css('border', 'none');
-  $('#cvv').prev().css('color', 'black');
+  if ($('#cvv').val() === '' || $('#cvv').val().length < 3 || $('#cvv').val().length > 3 || isNaN($('#cvv').val())) {
+    $('#cvv').css('border-color', '#ff0000');
+    $('#cvv').prev().css('color', '#ff0000');
+    event.preventDefault();
+  } else {
+    $('#cvv').css('border', 'none');
+    $('#cvv').prev().css('color', 'black');
+  }
 }
-
 if ($('#name').val() === '') {
   $('#name').css('border-color', '#ff0000');
   $('#name').prev().css('color', '#ff0000');
